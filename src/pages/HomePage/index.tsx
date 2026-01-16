@@ -6,7 +6,6 @@ import {
   Camera,
   Code,
   Coffee,
-  ArrowRight,
   Sparkles,
   Terminal,
   BookOpen,
@@ -18,6 +17,7 @@ const Portfolio = () => {
   const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
+    console.log("HomePage mounted", activeSection);
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
@@ -25,7 +25,7 @@ const Portfolio = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToSection = (id) => {
+  const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
@@ -203,7 +203,7 @@ const Portfolio = () => {
               <div
                 style={{
                   display: "none",
-                  "@media (min-width: 768px)": { display: "block" },
+                  // "@media (min-width: 768px)": { display: "block" },
                 }}
               >
                 {/* Note: In inline JS styles, media queries don't work directly like this, relying on CSS class instead */}
@@ -235,8 +235,12 @@ const Portfolio = () => {
 };
 
 // --- Helper Components ---
-
-const HobbyCard = ({ icon, title, desc }) => (
+interface HobbyCardProps {
+  icon: React.ReactElement<{ size?: number }>;
+  title: string;
+  desc: string;
+}
+const HobbyCard = ({ icon, title, desc }: HobbyCardProps) => (
   <div className="hobby-card">
     <div className="hobby-icon-circle">
       {React.cloneElement(icon, { size: 28 })}

@@ -1,4 +1,4 @@
-import { message, Popover, Tooltip } from "antd";
+import { message, Popover } from "antd";
 import {
   WechatOutlined,
   GithubOutlined,
